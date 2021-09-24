@@ -191,7 +191,7 @@ class Signer
     return unless wss?
     node = document.at_xpath('wsse:BinarySecurityToken', wsse: WSSE_NAMESPACE)
     unless node
-      node = Nokogiri::XML::Node.new('BinarySecurityToken', document)
+      node = Nokogiri::XML::Node.new('wsse:BinarySecurityToken', document)
       node['ValueType']    = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3'
       node['EncodingType'] = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary'
       node.content = Base64.encode64(cert.to_der).gsub("\n", '')
